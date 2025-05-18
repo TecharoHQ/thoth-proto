@@ -1,0 +1,25 @@
+syntax = "proto3";
+package techaro.thoth.iptoasn.v1;
+option go_package = "github.com/TecharoHQ/thoth-proto/gen/techaro/thoth/iptoasn/v1";
+
+import "buf/validate/validate.proto";
+
+message LookupRequest {
+  string ip_address = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id : "ip_address.is_ip_address",
+      message : "ip_address must be an IP address",
+      expression : "this.isIp()"
+    }
+  ];
+}
+message LookupResponse {
+  bool announced = 1;
+  int32 as_number = 2;
+  string as_range = 3;
+  string country_code = 4;
+  string description = 5;
+}
+
+service IpToASNService { rpc Lookup(LookupRequest) returns (LookupResponse); }
