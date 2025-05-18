@@ -1,0 +1,20 @@
+name: Cut Release
+on:
+  workflow_dispatch: {}
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          fetch-tags: true
+          fetch-depth: 0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - name: release
+        env:
+          GITHUB_TOKEN: ${{ secrets.TECHAROHQ_HACK_WRITE_TOKEN }}
+        run: |
+          npm ci
+          npx semantic-release --debug

@@ -1,0 +1,113 @@
+{
+  "name": "@techaro/thoth-proto",
+  "version": "0.0.1",
+  "description": "Protobuf definitions for Thoth",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "go test ./...",
+    "release": "gh workflow run 'Cut Release'",
+    "format": "prettier --write . && go tool goimports -w ./...",
+    "prepare": "husky"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TecharoHQ/thoth-proto.git"
+  },
+  "author": "Xe Iaso <me@xeiaso.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TecharoHQ/thoth-proto/issues"
+  },
+  "homepage": "https://github.com/TecharoHQ/thoth-proto#readme",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "body-max-line-length": [
+        2,
+        "always",
+        99999
+      ],
+      "footer-max-line-length": [
+        2,
+        "always",
+        99999
+      ],
+      "signed-off-by": [
+        2,
+        "always"
+      ]
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,html,json,css,scss,md,mdx}": [
+      "prettier -w"
+    ],
+    "**/*.{go}": [
+      "go tool goimports -w"
+    ]
+  },
+  "prettier": {
+    "singleQuote": false,
+    "tabWidth": 2,
+    "semi": true,
+    "trailingComma": "all",
+    "printWidth": 80
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/exec",
+        {
+          "verifyReleaseCmd": "echo ${nextRelease.version} > .VERSION"
+        }
+      ],
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      [
+        "@semantic-release/changelog",
+        {
+          "changeLogFile": "CHANGLOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}\n\nSigned-Off-By: Mimi Yasomi <mimi@techaro.lol>"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3",
+    "semantic-release": "^24.2.3"
+  },
+  "dependencies": {
+    "@semantic-release/exec": "^7.0.3"
+  }
+}
