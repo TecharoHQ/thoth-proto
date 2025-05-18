@@ -7,11 +7,8 @@
 package thothv1
 
 import (
-	_ "github.com/TecharoHQ/thoth-proto/gen/techaro/thoth/iptoasn/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/durationpb"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	unsafe "unsafe"
 )
@@ -27,7 +24,7 @@ var File_techaro_thoth_v1_thoth_proto protoreflect.FileDescriptor
 
 const file_techaro_thoth_v1_thoth_proto_rawDesc = "" +
 	"\n" +
-	"\x1ctecharo/thoth/v1/thoth.proto\x12\x10techaro.thoth.v1\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a&techaro/thoth/iptoasn/v1/iptoasn.protoB\xc3\x01\n" +
+	"\x1ctecharo/thoth/v1/thoth.proto\x12\x10techaro.thoth.v1B\xc3\x01\n" +
 	"\x14com.techaro.thoth.v1B\n" +
 	"ThothProtoP\x01Z=github.com/TecharoHQ/thoth-proto/gen/techaro/thoth/v1;thothv1\xa2\x02\x03TTX\xaa\x02\x10Techaro.Thoth.V1\xca\x02\x10Techaro\\Thoth\\V1\xe2\x02\x1cTecharo\\Thoth\\V1\\GPBMetadata\xea\x02\x12Techaro::Thoth::V1b\x06proto3"
 

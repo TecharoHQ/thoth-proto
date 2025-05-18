@@ -9,7 +9,9 @@
     "test": "go test ./...",
     "release": "gh workflow run 'Cut Release'",
     "format": "prettier --write . && go tool goimports -w ./...",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint": "buf lint",
+    "generate": "buf generate"
   },
   "repository": {
     "type": "git",
@@ -95,10 +97,12 @@
     ]
   },
   "devDependencies": {
+    "@bufbuild/buf": "^1.54.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/exec": "^7.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
     "@semantic-release/release-notes-generator": "^14.0.3",
@@ -106,8 +110,5 @@
     "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "semantic-release": "^24.2.3"
-  },
-  "dependencies": {
-    "@semantic-release/exec": "^7.0.3"
   }
 }

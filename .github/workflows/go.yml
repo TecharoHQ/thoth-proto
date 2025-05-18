@@ -20,36 +20,17 @@ jobs:
           persist-credentials: false
           fetch-tags: true
 
-      - name: build essential
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential
-
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@8bcbfa880644de056b8e6bb1c583cb2f4362c6bb
-
-      - name: Setup Homebrew cellar cache
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+      - name: Setup Go environment
+        uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
         with:
-          path: |
-            /home/linuxbrew/.linuxbrew/Cellar
-            /home/linuxbrew/.linuxbrew/bin
-            /home/linuxbrew/.linuxbrew/etc
-            /home/linuxbrew/.linuxbrew/include
-            /home/linuxbrew/.linuxbrew/lib
-            /home/linuxbrew/.linuxbrew/opt
-            /home/linuxbrew/.linuxbrew/sbin
-            /home/linuxbrew/.linuxbrew/share
-            /home/linuxbrew/.linuxbrew/var
-          key: ${{ runner.os }}-go-homebrew-cellar-${{ hashFiles('go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-homebrew-cellar-
+          go-version: "stable"
 
-      - name: Install Brew dependencies
-        run: |
-          brew bundle
+      - name: Setup Node environment
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: "latest"
 
-      - name: Setup Golang caches
+      - name: Setup Go caches
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
         with:
           path: |
@@ -59,12 +40,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-golang-
 
-      - name: Build
-        run: make build
+      - name: NPM deps
+        run: |
+          npm ci
 
-      - name: Test
-        run: make test
-
-      - uses: dominikh/staticcheck-action@fe1dd0c3658873b46f8c9bb3291096a617310ca6 # v1.3.1
-        with:
-          version: "latest"
+      - name: buf lint
+        run: npx --no-install buf lint
