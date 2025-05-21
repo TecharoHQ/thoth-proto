@@ -69,7 +69,7 @@ func (x *LookupRequest) GetIpAddress() string {
 type LookupResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Announced     bool                   `protobuf:"varint,1,opt,name=announced,proto3" json:"announced,omitempty"`
-	AsNumber      int32                  `protobuf:"varint,2,opt,name=as_number,json=asNumber,proto3" json:"as_number,omitempty"`
+	AsNumber      uint32                 `protobuf:"varint,2,opt,name=as_number,json=asNumber,proto3" json:"as_number,omitempty"`
 	Cidr          []string               `protobuf:"bytes,3,rep,name=cidr,proto3" json:"cidr,omitempty"`
 	CountryCode   string                 `protobuf:"bytes,4,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
 	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
@@ -114,7 +114,7 @@ func (x *LookupResponse) GetAnnounced() bool {
 	return false
 }
 
-func (x *LookupResponse) GetAsNumber() int32 {
+func (x *LookupResponse) GetAsNumber() uint32 {
 	if x != nil {
 		return x.AsNumber
 	}
@@ -153,7 +153,7 @@ const file_techaro_thoth_iptoasn_v1_iptoasn_proto_rawDesc = "" +
 	"\x18ip_address.is_ip_address\x12 ip_address must be an IP address\x1a\vthis.isIp()\xc8\x01\x01R\tipAddress\"\xa4\x01\n" +
 	"\x0eLookupResponse\x12\x1c\n" +
 	"\tannounced\x18\x01 \x01(\bR\tannounced\x12\x1b\n" +
-	"\tas_number\x18\x02 \x01(\x05R\basNumber\x12\x12\n" +
+	"\tas_number\x18\x02 \x01(\rR\basNumber\x12\x12\n" +
 	"\x04cidr\x18\x03 \x03(\tR\x04cidr\x12!\n" +
 	"\fcountry_code\x18\x04 \x01(\tR\vcountryCode\x12 \n" +
 	"\vdescription\x18\x05 \x01(\tR\vdescription2m\n" +

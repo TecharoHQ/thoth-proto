@@ -15,7 +15,7 @@ message LookupRequest {
 }
 message LookupResponse {
   bool announced = 1;
-  int32 as_number = 2;
+  uint32 as_number = 2;
   repeated string cidr = 3;
   string country_code = 4;
   string description = 5;
