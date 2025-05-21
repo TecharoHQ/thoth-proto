@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/TecharoHQ/thoth-proto/compare/v0.2.0...v0.3.0) (2025-05-21)
+
+
+### Features
+
+* **iptoasn:** asn numbers are uint32 ([eb09ab5](https://github.com/TecharoHQ/thoth-proto/commit/eb09ab58433133c54ec00938d856e3f798cae230))
+
 # [0.2.0](https://github.com/TecharoHQ/thoth-proto/compare/v0.1.0...v0.2.0) (2025-05-19)
 
 
