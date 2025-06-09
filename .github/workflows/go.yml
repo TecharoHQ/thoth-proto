@@ -46,3 +46,6 @@ jobs:
 
       - name: buf lint
         run: npx --no-install buf lint
+
+      - name: go test
+        run: go test ./...
