@@ -2,7 +2,6 @@ syntax = "proto3";
 package techaro.thoth.reputation.v1;
 
 import "buf/validate/validate.proto";
-import "google/protobuf/timestamp.proto";
 import "techaro/thoth/iptoasn/v1/iptoasn.proto";
 
 service ReputeService {
