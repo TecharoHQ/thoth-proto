@@ -1,3 +1,10 @@
+# [0.4.0](https://github.com/TecharoHQ/thoth-proto/compare/v0.3.0...v0.4.0) (2025-06-09)
+
+
+### Features
+
+* reputation service ([042d2cf](https://github.com/TecharoHQ/thoth-proto/commit/042d2cf351b5114ebc94e285331771de2feb91a7))
+
 # [0.3.0](https://github.com/TecharoHQ/thoth-proto/compare/v0.2.0...v0.3.0) (2025-05-21)
 
 
