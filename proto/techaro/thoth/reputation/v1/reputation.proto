@@ -1,0 +1,39 @@
+syntax = "proto3";
+package techaro.thoth.reputation.v1;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "techaro/thoth/iptoasn/v1/iptoasn.proto";
+
+service ReputeService {
+  rpc Query(ReputeServiceQueryRequest) returns (ReputeServiceQueryResponse);
+}
+
+message IPList {
+  uint32 id = 1;
+  string name = 2;
+  int32 weight_mod = 3;
+  string comment = 4;
+}
+
+message ReputeServiceQueryRequest {
+  string ip_address = 1 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id : "ip_address.is_ip_address",
+      message : "ip_address must be an IP address",
+      expression : "this.isIp()"
+    }
+  ];
+  map<string, string> fingerprints = 2;
+  string user_agent = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+message ReputeServiceQueryResponse {
+  bool has_match = 1;
+  repeated IPList ip_lists = 2;
+  string suggested_challenge = 3;
+  techaro.thoth.iptoasn.v1.LookupResponse asn_info = 4;
+}
