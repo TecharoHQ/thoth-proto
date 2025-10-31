@@ -1,0 +1,42 @@
+syntax = "proto3";
+package techaro.thoth.analytics.v1;
+option go_package = "github.com/TecharoHQ/thoth-proto/proto/thoth/v1";
+
+import "buf/validate/validate.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+enum TargetKind {
+  Subrequest = 0;
+  HTTP = 1;
+  HTTPS = 2;
+  DomainSocket = 3;
+}
+
+enum SecretKind {
+  ED25519 = 0;
+  HS256 = 1;
+}
+
+message RecordRequest {
+  // Information about how Anubis has been working out.
+  map<string, int32> challenges_issued = 1;    // method name -> integer counter
+  map<string, int32> challenges_validated = 2; // method name -> integer counter
+  map<string, int32> failed_validations = 3;   // method name -> integer counter
+  map<string, int32> policy_results = 4; // verb/policy name -> integer counter
+  map<string, int32> proxied_requests = 5; // http host -> integer counter
+
+  // Information about the Anubis install
+  bool uses_default_config = 6;
+  string anubis_version = 7 [ (buf.validate.field).required = true ];
+  google.protobuf.Timestamp server_start_time = 8;
+  string storage_backend = 9 [ (buf.validate.field).required = true ];
+  TargetKind target_info = 10;
+  TargetKind bind_info = 11;
+  TargetKind metrics_info = 12;
+  bool uses_imprint = 13;
+}
+
+message RecordResponse {}
+
+service AnalyticsService { rpc Record(RecordRequest) returns (RecordResponse); }
