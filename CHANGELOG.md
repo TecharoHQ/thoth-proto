@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/TecharoHQ/thoth-proto/compare/v0.4.0...v0.5.0) (2025-10-31)
+
+
+### Features
+
+* analytics API ([c54d056](https://github.com/TecharoHQ/thoth-proto/commit/c54d0560fc47caff7325f932fed5ed7de0082bae))
+
 # [0.4.0](https://github.com/TecharoHQ/thoth-proto/compare/v0.3.0...v0.4.0) (2025-06-09)
 
 
