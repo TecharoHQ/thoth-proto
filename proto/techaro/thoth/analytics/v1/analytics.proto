@@ -3,19 +3,21 @@ package techaro.thoth.analytics.v1;
 option go_package = "github.com/TecharoHQ/thoth-proto/proto/thoth/v1";
 
 import "buf/validate/validate.proto";
-import "google/protobuf/duration.proto";
+// import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
 
 enum TargetKind {
-  Subrequest = 0;
-  HTTP = 1;
-  HTTPS = 2;
-  DomainSocket = 3;
+  TARGET_KIND_UNSPECIFIED = 0;
+  TARGET_KIND_SUBREQUEST = 1;
+  TARGET_KIND_HTTP = 2;
+  TARGET_KIND_HTTPS = 3;
+  TARGET_KIND_DOMAIN_SOCKET = 4;
 }
 
 enum SecretKind {
-  ED25519 = 0;
-  HS256 = 1;
+  SECRET_KIND_UNSPECIFIED = 0;
+  SECRET_KIND_ED25519 = 1;
+  SECRET_KIND_HS256 = 2;
 }
 
 message RecordRequest {
